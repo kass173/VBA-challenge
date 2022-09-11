@@ -5,26 +5,26 @@ Sub MultipleYearStockData():
     For Each ws In Worksheets
     
         Dim WorksheetName As String
-        'Current row
+        'row
         Dim i As Long
         'Start row of ticker block
         Dim j As Long
         'Index counter to fill Ticker row
         Dim TickCount As Long
-        'Last row column A
+        'Last row col A
         Dim LastRowA As Long
-        'last row column I
+        'last row col I
         Dim LastRowI As Long
-        'Variable for percent change calculation
+        'Variable for percent change cal
         Dim PerChange As Double
-        'Variable for greatest increase calculation
+        'Variable for greatest increase cal
         Dim GreatIncr As Double
-        'Variable for greatest decrease calculation
+        'Variable for greatest decrease cal
         Dim GreatDecr As Double
         'Variable for greatest total volume
         Dim GreatVol As Double
         
-        'Get the WorksheetName 
+        'Get the WorksheetName
         WorksheetName = ws.Name
         
         'Create column headers
@@ -44,20 +44,20 @@ Sub MultipleYearStockData():
         'Set start row to 2
         j = 2
         
-        'Find the last non-blank cell in column A
+        'Find the last cell with no data in column A
         LastRowA = ws.Cells(Rows.Count, 1).End(xlUp).Row
         'MsgBox ("Last row in column A is " & LastRowA)
         
-            'Loop through all rows
+            'Loop all rows
             For i = 2 To LastRowA
             
                 'Check if ticker name changed
                 If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
                 
-                'Write ticker in column I (#9)
+                'Write ticker in column I (no.9)
                 ws.Cells(TickCount, 9).Value = ws.Cells(i, 1).Value
                 
-                'Calculate and write Yearly Change in column J (#10)
+                'Calculate and write Yearly Change in column J (no.10)
                 ws.Cells(TickCount, 10).Value = ws.Cells(i, 6).Value - ws.Cells(j, 3).Value
                 
                     'Conditional formating
@@ -73,7 +73,7 @@ Sub MultipleYearStockData():
                 
                     End If
                     
-                    'Calculate and write percent change in column K (#11)
+                    'Calculate and write percent change in column K (no.11)
                     If ws.Cells(j, 3).Value <> 0 Then
                     PerChange = ((ws.Cells(i, 6).Value - ws.Cells(j, 3).Value) / ws.Cells(j, 3).Value)
                     
@@ -86,7 +86,7 @@ Sub MultipleYearStockData():
                     
                     End If
                     
-                'Calculate and write total volume in column L (#12)
+                'Calculate and write total volume in column L (no.12)
                 ws.Cells(TickCount, 12).Value = WorksheetFunction.Sum(Range(ws.Cells(j, 7), ws.Cells(i, 7)))
                 
                 'Increase TickCount by 1
@@ -157,3 +157,5 @@ Sub MultipleYearStockData():
     Next ws
         
 End Sub
+
+
